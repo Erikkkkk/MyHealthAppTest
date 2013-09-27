@@ -3,7 +3,6 @@ package com.jcheed06.myhealthapp.test;
 import com.jcheed06.myhealthapp.MainActivity;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.widget.TextView;
 
 public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
 	//private TextView result;
