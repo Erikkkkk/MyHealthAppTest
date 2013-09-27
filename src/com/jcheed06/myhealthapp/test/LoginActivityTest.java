@@ -1,8 +1,10 @@
 package com.jcheed06.myhealthapp.test;
 
-import com.jcheed06.myhealthapp.LoginActivity;
-
 import android.test.ActivityInstrumentationTestCase2;
+import android.widget.Button;
+
+import com.jcheed06.myhealthapp.LoginActivity;
+import com.jcheed06.myhealthapp.R;
 
 public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginActivity> {
 	private static final String CORRECT_USERNAME = "cristianhalman";  
@@ -26,10 +28,13 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
 		   sendKeys("ENTER");
 		   sendKeys(INCORRECT_PASSWORD);
 		   sendKeys("ENTER");
-		   sendKeys("ENTER");
 		   
 		   LoginActivity loginActivity = getActivity();
+		   
+		   Button button = (Button) loginActivity.findViewById(R.id.btn_login);
+		   button.performClick();
+		   
 		   Integer updatetIncorrectLogins = new Integer(loginActivity.getIncorrectLogins());
-		   assertTrue("Add result should be " + (incorrectLogins + 1), updatetIncorrectLogins.equals((incorrectLogins + 1)));  
+		   assertTrue("Incorrect login test:", updatetIncorrectLogins.equals((incorrectLogins + 1)));  
 		}  
 }
