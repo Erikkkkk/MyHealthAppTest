@@ -9,23 +9,27 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
 	private static final String INCORRECT_PASSWORD = "lblalababllabla";  
 	private static final String CORRECT_PASSWORD = "password";  
 
+	private int incorrectLogins;
+	
 	public LoginActivityTest() {
 		super("com.jcheed06.myhealthapp", LoginActivity.class);
 	}
 
 	protected void setUp() throws Exception {
 		super.setUp();
+		LoginActivity loginActivity = getActivity();
+		incorrectLogins = loginActivity.getIncorrectLogins();
 	}
 
-	public void testIncrementIncorrectLoginsIntIfCredentialsWrong() {  
+	public void testIncrementIncorrectLoginsIntIfWrongCredentials() {  
 		   sendKeys(CORRECT_USERNAME);
 		   sendKeys("ENTER");
 		   sendKeys(INCORRECT_PASSWORD);
 		   sendKeys("ENTER");
+		   sendKeys("ENTER");
 		   
-		   
-		   // get result  
-		   //String mathResult = result.getText().toString();  
-		   //assertTrue("Add result should be 98", mathResult.equals(ADD_RESULT));  
+		   LoginActivity loginActivity = getActivity();
+		   Integer updatetIncorrectLogins = new Integer(loginActivity.getIncorrectLogins());
+		   assertTrue("Add result should be " + (incorrectLogins + 1), updatetIncorrectLogins.equals((incorrectLogins + 1)));  
 		}  
 }
