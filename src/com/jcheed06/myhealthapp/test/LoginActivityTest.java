@@ -31,8 +31,24 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
 		   
 		   LoginActivity loginActivity = getActivity();
 		   
-		   Button button = (Button) loginActivity.findViewById(R.id.btn_login);
-		   button.performClick();
+		   final Button button = (Button) loginActivity.findViewById(R.id.btn_login);
+		   
+		   loginActivity.runOnUiThread(new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				button.performClick();
+			}
+			   
+		   });
+		   
+		   
 		   
 		   Integer updatetIncorrectLogins = new Integer(loginActivity.getIncorrectLogins());
 		   assertTrue("Incorrect login test:", updatetIncorrectLogins.equals((incorrectLogins + 1)));  
