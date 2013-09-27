@@ -19,8 +19,6 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
 
 	protected void setUp() throws Exception {
 		super.setUp();
-		LoginActivity loginActivity = getActivity();
-		incorrectLogins = loginActivity.getIncorrectLogins();
 	}
 
 	public void testIncrementIncorrectLoginsIntIfWrongCredentials() {  
@@ -31,6 +29,7 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
 		   
 		   LoginActivity loginActivity = getActivity();
 		   
+		   incorrectLogins = loginActivity.getIncorrectLogins();
 		   final Button button = (Button) loginActivity.findViewById(R.id.btn_login);
 		   
 		   loginActivity.runOnUiThread(new Runnable() {
